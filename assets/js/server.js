@@ -48,10 +48,18 @@ app.get('/view/login', (req, res) => {
 });
 
 // Rutas sin configuración CORS específica
-app.post('/register', (req, res) => {
+/*app.post('/register', (req, res) => {
   console.log("Solicitud POST recibida en /register");
   userController.registerUser(req, res);
 });
+*/
+app.post('/register', (req, res) => {
+  // Aquí puedes incluir la lógica para registrar al usuario en tu base de datos si es necesario
+  // Luego, redirige al usuario a la página de inicio de sesión después de registrarse
+  res.redirect('/view/login.html');
+});
+
+
 
 app.post('/login', (req, res) => {
   userController.loginUser(req, res);
