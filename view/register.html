@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
+    <title>Registro</title>
+</head>
+<body>
+    <section class="vh-100" style="background-color: #ed563b;">
+        <div class="container-fluid py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="/assets/images/login.png" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    <form id="registroForm" action="/register" method="post">
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                            <span class="h1 fw-bold mb-0">Registaararse</span>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="nombreCompleto" class="form-control form-control-lg" name="nombreCompleto" />
+                                            <label class="form-label" for="nombreCompleto">Nombre Completo</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="email" id="correo" class="form-control form-control-lg" name="correo" />
+                                            <label class="form-label" for="correo">Correo electrónico</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="usuario" class="form-control form-control-lg" name="usuario" />
+                                            <label class="form-label" for="usuario">Nombre de usuario</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="password" id="contrasena" class="form-control form-control-lg" name="contrasena" />
+                                            <label class="form-label" for="contrasena">Contraseña</label>
+                                        </div>
+                                        <div class="pt-1 mb-4">
+                                            <button class="btn btn-dark btn-lg btn-block" type="submit">Registrarse</button>
+                                        </div>
+                                        <a class="small text-muted" href="#!">¿Ya tienes una cuenta? Iniciar sesión</a>
+                                        <a href="#!" class="small text-muted">Términos de uso</a>
+                                        <a href="#!" class="small text-muted">Política de privacidad</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registroForm');
+
+            form.addEventListener('submit', function (event) {
+                const errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(message => message.textContent = '');
+
+                // Validar nombre completo
+                const nombreCompletoInput = document.getElementById('nombreCompleto');
+                if (nombreCompletoInput.value.trim() === '') {
+                    displayErrorMessage(nombreCompletoInput, 'Por favor, ingresa tu nombre completo.');
+                    event.preventDefault();
+                    return;
+                }
+
+                // Validar correo electrónico
+                const correoInput = document.getElementById('correo');
+                const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!correoRegex.test(correoInput.value)) {
+                    displayErrorMessage(correoInput, 'Por favor, ingresa un correo electrónico válido.');
+                    event.preventDefault();
+                    return;
+                }
+
+                // Validar nombre de usuario
+                const usuarioInput = document.getElementById('usuario');
+                if (usuarioInput.value.trim() === '') {
+                    displayErrorMessage(usuarioInput, 'Por favor, ingresa un nombre de usuario.');
+                    event.preventDefault();
+                    return;
+                }
+
+                // Validar contraseña
+                const contrasenaInput = document.getElementById('contrasena');
+                if (contrasenaInput.value.trim() === '') {
+                    displayErrorMessage(contrasenaInput, 'Por favor, ingresa una contraseña.');
+                    event.preventDefault();
+                    return;
+                }
+            });
+
+            function displayErrorMessage(inputElement, errorMessage) {
+                // Crear un elemento de mensaje de error
+                const messageElement = document.createElement('div');
+                messageElement.textContent = errorMessage;
+                messageElement.classList.add('error-message');
+
+                // Insertar el mensaje de error después del campo de entrada
+                inputElement.parentNode.insertBefore(messageElement, inputElement.nextSibling);
+            }
+        });
+    </script>
+</body>
+</html>
