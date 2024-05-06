@@ -54,6 +54,7 @@ app.get('/view/login', (req, res) => {
 });
 */
 app.post('/register', (req, res) => {
+  console.log('Solicitud POST recibida en /register');
   // Aquí puedes incluir la lógica para registrar al usuario en tu base de datos si es necesario
   // Luego, redirige al usuario a la página de inicio de sesión después de registrarse
   res.redirect('/view/login.html');

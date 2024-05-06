@@ -108,6 +108,12 @@
                 // Insertar el mensaje de error después del campo de entrada
                 inputElement.parentNode.insertBefore(messageElement, inputElement.nextSibling);
             }
+
+
+            document.getElementById('registroForm').addEventListener('submit', function (event) {
+                console.log('Formulario de registro enviado');
+                // Lógica de validación y envío de datos
+            });
         });
     </script>
 </body>
